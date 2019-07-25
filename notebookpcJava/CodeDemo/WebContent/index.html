@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>codeDemo</title>
+</head>
+<body>
+	<form action="#">
+	登录：   <input type="text" name="username"/><br/>
+	密码：   <input type="password" name="password"/><br/>
+	验证码：<input type="text" name="code"><img onclick="changeCode()" src="/CodeDemo/code"><a href="javascript:changeCode()">看不清，换一张</a>
+	</form>
+</body>
+<script type="text/javascript">
+	function changeCode() {
+		document.getElementsByTagName('img')[0].src="/CodeDemo/code?time="+new Date().getTime();
+	}
+	
+</script>
+</html>

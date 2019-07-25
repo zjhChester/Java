@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-3.2.1.min.js" type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<button type="button" onclick="init()">Ajax获取</button>
+		<script type="text/javascript">
+			function init(){
+				$.ajax({
+				type:"post",
+				url:"AjaxDemo",
+				data:{ "name" : "zjh"},
+				async:true, 
+				success:function(data){
+					var cc = {data};
+					var obj = eval('('+data+')');
+					//var arr = JSON.parse(cc);
+					console.log(obj);
+				}, 
+				error:function(){
+					console.log("error");
+				}  
+			});
+			}
+		</script>
+	</body>
+</html>

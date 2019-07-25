@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<input id="input" type="text" value="">
+	<button type="button" onclick="init()">Ajax获取</button>
+
+	<script type="text/javascript">
+		function init() {
+			$.ajax({
+				type : "get",
+				url : "AjaxDemo",
+				data : {
+					"msg" : $("#input").val()
+				}, //键值
+				async : true,
+				success : function(data) {
+					document.getElementById('input').value = data;
+					$("#input").css({
+						"width" : "200px",
+						"background":"black",
+						"opacity":"0.8",
+						"color":"white",
+						"height" : "100px",
+						"-webkit-transition" : "0.6s ease-in"
+					});
+				},
+				error : function() {
+					console.log("error");
+				}
+			});
+			$("body").css("background", "cyan");
+			$("#input").css({
+				
+				"margin-top" : "200px",
+				
+				"margin-left" : "200px",
+				"-webkit-transition" : "0.6s ease-in"
+			});
+		}
+	</script>
+</body>
+</html>
