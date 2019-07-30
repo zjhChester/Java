@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+    <title>Hello WebSocket</title>
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{static/css/main.css}" rel="stylesheet">
+    <script th:src="@{~/webjars/jquery/3.1.0/jquery.min.js}"></script>
+    <script th:src="@{~/webjars/sockjs-client/1.0.2/sockjs.min.js}"></script>
+    <script th:src="@{~/webjars/stomp-websocket/2.3.3/stomp.min.js}"></script>
+    <script th:src="@{static/js/app.js}"></script>
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div id="main-content" class="container">
+    <div class="col-lg-6">
+        <div class="container">
+            <form class="form-inline" name="connect">
+                <div class="form-group">
+                    <label for="connect">建立连接通道:</label><br>
+                    <span id="meerror" style="color:red;"></span>
+                    <br>
+                    <span>发件人：</span>
+                    <input type="text"  id="me" class="form-control" placeholder="我是"> <br>
+                    <span id="youerror" style="color:red;"></span> <hr style="border: none;"><br>
+                    <span>收件人：</span>
+                    <input type="text"  id="you" class="form-control" placeholder="发送给谁"> <hr style="border: none;">
+                    <button id="connect" class="btn btn-default" type="submit" >Connect</button> <br>
+                    <span id="connectsuccess" style="color:red;">连接断开</span><br>
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                    </button>
+                </div>
+                <!--<script>-->
+                    <!--function f() {-->
+                        <!--$("#meerror").html("");-->
+                        <!--$("#youerror").html("");-->
+                        <!--if($("#me").val() == ""){-->
+                            <!--$("#meerror").html("*请输入发送者");-->
+                            <!--$("#meerror").focus();-->
+                            <!--return;-->
+                        <!--}-->
+                        <!--else if($("#you").val() == ""){-->
+                            <!--$("#youerror").html("*请输入收信人");-->
+                            <!--$("#youerror").focus();-->
+                            <!--return;-->
+                        <!--}else-->
+                        <!--{-->
+                            <!--$("#me").attr("disabled","disabled");-->
+                            <!--$("#you").attr("disabled","disabled");-->
+                            <!--connect.submit();-->
+                        <!--}-->
+                    <!--}-->
+                <!--</script>-->
+            </form>
+        </div> <hr style="">
+        <div class="container">
+            <form class="form-inline" name="content" method="post">
+                <div class="form-group">
+                    <span id="contenterror" style="color:red;"></span> <br>
+                    <span>消息：</span>
+                    <input type="text" id="content" class="form-control" placeholder="请输入...">
+                </div>
+
+            </form> <hr style="border: none;">
+            <button id="send" class="btn btn-default" type="submit">发送</button>
+            <!--<script>-->
+                <!--function checknull() {-->
+                    <!--$("#contenterror").html("")-->
+                    <!--if($("#content").val() == ""){-->
+                        <!--$("#contenterror").html("*请输入需要发送的内容")-->
+                        <!--$("#content").focus();-->
+                        <!--return;-->
+                    <!--}else{-->
+                        <!--content.submit();-->
+                    <!--}-->
+                <!--}-->
+            <!--</script>-->
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped" style="background: bisque">
+                <thead>
+                <tr>
+                    <th>聊天记录</th>
+                </tr>
+                </thead>
+                <tbody id="notice">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
