@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <head>
-    <title>Hello WebSocket</title>
+    <title>即时通讯~ChesterUtils</title>
     <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{static/css/main.css}" rel="stylesheet">
     <script th:src="@{~/webjars/jquery/3.1.0/jquery.min.js}"></script>
@@ -14,7 +14,7 @@
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
     enabled. Please enable
     Javascript and reload this page!</h2></noscript>
-<div id="main-content" class="container">
+<div id="main-content" class="container" style="overflow: hidden;">
     <div class="col-lg-6">
         <div class="container">
             <form class="form-inline" name="connect">
@@ -55,41 +55,53 @@
                 <!--</script>-->
             </form>
         </div> <hr style="">
-        <div class="container">
-            <form class="form-inline" name="content" method="post">
-                <div class="form-group">
-                    <span id="contenterror" style="color:red;"></span> <br>
-                    <span>消息：</span>
-                    <input type="text" id="content" class="form-control" placeholder="请输入...">
-                </div>
-
-            </form> <hr style="border: none;">
-            <button id="send" class="btn btn-default" type="submit">发送</button>
-            <!--<script>-->
-                <!--function checknull() {-->
-                    <!--$("#contenterror").html("")-->
-                    <!--if($("#content").val() == ""){-->
-                        <!--$("#contenterror").html("*请输入需要发送的内容")-->
-                        <!--$("#content").focus();-->
-                        <!--return;-->
-                    <!--}else{-->
-                        <!--content.submit();-->
-                    <!--}-->
-                <!--}-->
-            <!--</script>-->
+        <div class="text-left" >
+            <p>author:张小皮</p>
+            <p><a href="https://zjhChester.github.io">git主页</a> </p>
+            <p><a href="http://zjhwork.xyz">个人主页</a> </p>
+            <p>完成时间:2019-7-30 </p>
+            <p>Copy Right @张小皮 All Rights reverse 2019</p>
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="col-md-12">
-            <table id="conversation" class="table table-striped" style="background: bisque">
-                <thead>
-                <tr>
-                    <th>聊天记录</th>
-                </tr>
-                </thead>
+        <h3 align="center" style="background: cornflowerblue;color: white;padding:3%;">消息记录</h3>
+        <div class="col-md-12 sc" style="height: 400px;overflow-y: scroll;overflow-x:hidden">
+            <table id="conversation" class="table table-striped" style="background: bisque;">
+                <style type="text/css">
+                    .sc::-webkit-scrollbar {
+
+                        display:none
+
+                    }
+                </style>
                 <tbody id="notice">
                 </tbody>
             </table>
+        </div>
+       <hr>
+        <div class="col-md-12">
+            <form class="form-inline" name="content" method="post">
+                <div class="form-group ">
+                    <span id="contenterror" style="color:red;"></span> <br>
+                    <span>消息：</span>
+                    <input type="text" id="content"style="width: 120%;" class="form-control" placeholder="请输入...">
+                </div>
+
+            </form> <hr style="border: none;">
+            <div class="text-center">            <button id="send" class="btn btn-default" style="width: 60%;" type="submit">发送</button>
+            </div>
+            <!--<script>-->
+            <!--function checknull() {-->
+            <!--$("#contenterror").html("")-->
+            <!--if($("#content").val() == ""){-->
+            <!--$("#contenterror").html("*请输入需要发送的内容")-->
+            <!--$("#content").focus();-->
+            <!--return;-->
+            <!--}else{-->
+            <!--content.submit();-->
+            <!--}-->
+            <!--}-->
+            <!--</script>-->
         </div>
     </div>
 </div>
