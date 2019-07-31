@@ -65,12 +65,14 @@ function sendName() {
     var fromUser = document.getElementById("me").value;
     var message = document.getElementById("content").value;
     stompClient.send("/sendMessage/single/chat", {}, JSON.stringify({
-        'message': "<span style='padding: 3%;border-radius: 50px;width: 40px;height: 40px;background: darkslateblue;color: white;'>"+$("#me").val()+'</span>：'+$("#content").val(),
+        'message': "<span style='padding: 3%;border-radius: 50px;width: 40px;height: 40px;background: green;color: white;'>"+$("#me").val()+'</span>：'+$("#content").val(),
         'toUser': $("#you").val(),
         'fromUser': $("#me").val()
     }));
-    $("#notice").append("<tr><td><p class='text-right' style='width: 100%;border: 3px solid #8efff5;border-radius: 10%;overflow: hidden;background: white;" +
-        "color: black;font-size:17px;opacity: 0.8;padding: 3%;box-shadow: black 3px 3px 5px'>" + message +"：<span style='padding: 3%;border-radius: 50px;width: 40px;height: 40px;background: darkslateblue;color: white;'>"+fromUser+ "</span></p></td></tr>");
+    $("#notice").append("<tr><td><p style='text-align: right;padding: 3%;'><span class='text-right' style='border: 1px solid lightgray;border-radius: 15px;overflow: hidden;margin-right:0px;background: black;" +
+        "color: white;font-size:13px;opacity: 1;padding: 5%;box-shadow: black 8px 8px 5px'>" + message +"：<span style='padding: 3%;border-radius: 50px;width: 40px;height: 40px;background: darkslateblue;color: white;'>"+fromUser+ "</span></span></pst></td></tr>");
+    var ele = document.getElementsByClassName("sc")[0];
+    ele.scrollTop = ele.scrollHeight;
     if (window.XMLHttpRequest) {
         // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
         xmlhttp = new XMLHttpRequest();
@@ -88,8 +90,10 @@ function sendName() {
 }
 
 function showContent(body) {
-    $("#notice").append("<tr><td><p class='text-left' style='border: 3px solid coral;border-radius: 10%;overflow: hidden;" +
-        "color: black;font-size:17px;opacity: 0.8;padding: 3%;box-shadow: black 3px 3px 5px'>" + body + "</p></td></tr>");
+    $("#notice").append("<tr><td><p style='text-align: left;padding: 3%;'><span class='text-left' style='border: 1px solid lightcyan;border-radius: 15px;overflow: hidden;" +
+        "color: black;background:lightgray;font-size:13px;opacity: 1;padding: 5%;box-shadow: black 8px 8px 5px'>" + body + "</span></p></td></tr>");
+    var ele = document.getElementsByClassName("sc")[0];
+    ele.scrollTop = ele.scrollHeight;
 }
 
 $(function () {
@@ -100,4 +104,8 @@ $(function () {
     $( "#disconnect" ).click(function() {  disconnect(); });
     $( "#send" ).click(function() { sendName(); });
 });
-
+$(document).keydown(function(event){
+    　　if(event.keyCode == 13){
+        　　　　　　$("#send").click();
+        　　　　}
+    　　});
